@@ -83,42 +83,12 @@ private val elementsDrawer by lazy {
 
     override fun onKeyDown(keyCode: Int, event: KeyEvent?): Boolean {
         when (keyCode){
-            KEYCODE_DPAD_UP -> move(UP)
-            KEYCODE_DPAD_DOWN -> move(DOWN)
-            KEYCODE_DPAD_LEFT -> move(LEFT)
-            KEYCODE_DPAD_RIGHT -> move(RIGHT)
+            KEYCODE_DPAD_UP -> elementsDrawer.move(binding.myTank, UP)
+            KEYCODE_DPAD_DOWN -> elementsDrawer.move(binding.myTank, DOWN)
+            KEYCODE_DPAD_LEFT -> elementsDrawer.move(binding.myTank, LEFT)
+            KEYCODE_DPAD_RIGHT -> elementsDrawer.move(binding.myTank, RIGHT)
         }
         return super.onKeyDown(keyCode, event)
     }
-    private fun move(direction: Direction){
-        when (direction){
-            UP->{
-                binding.myTank.rotation = 0f
-                if (binding.myTank.marginTop > 0) {
-                    (binding.myTank.layoutParams as FrameLayout.LayoutParams).topMaqin += -CELL_SIZE
-                }
-            }
-            DOWN -> {
-                binding.myTank.rotation = 180f
-                if (binding.myTank.marginTop + binding.Mytank.heigt < binding.container.height / CELL_SIZE  * CELL_SIZE ){
-                    (binding.myTank.layoutParams as FrameLayout.LayoutParams).topMaqin += CELL_SIZE
-                }
-            }
 
-            LEFT -> {
-                binding.myTank.rotation = 270f
-                if (binding.myTank.marginTop > 0) {
-                    (binding.myTank.layoutParams as FrameLayout.LayoutParams).leftMargin -= CELL_SIZE
-                }
-            }
-            RIGHT -> {
-                binding.myTank.rotation = 90f
-                if (binding.myTank.marginTop + binding.Mytank.heigt < binding.container.height / CELL_SIZE  * CELL_SIZE ){
-                    (binding.myTank.layoutParams as FrameLayout.LayoutParams).leftMargin += CELL_SIZE
-                }
-            }
-        }
-        binding.container.removeView(binding.myTank)
-        binding.container.addView(binding.myTank)
-    }
 }
